@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chroma Key with JS</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="module" src="./assets/script/index.js"></script>
+</head>
+<body class="min-h-screen bg-zinc-200 flex items-center justify-center">
+  <section class="container text-gray-600 body-font">
+    <div class="px-5 py-24 flex items-start justify-center">
+      <div class="lg:w-1/2 w-full mb-10 lg:mb-0 min-w-fit max-w-fit relative">
+        <video src="" id="video" style="display: none;" autoplay></video>
+        <canvas id="canvas" class="rounded-lg shadow-lg bg-cover" width="640" height="480"></canvas>
+        <div class="absolute top-1 flex justify-end w-full pr-2 text-gray-400">
+          <p id="videoInformation"></p>
+        </div>
+      </div>
+      <div class="flex flex-col flex-wrap lg:w-1/2 md:pl-4">
+        <div class="flex flex-col mb-10 lg:items-start items-center">
+          <div class="flex-grow w-full">
+            <label for="enableGrayScale" class="flex items-center justify-between text-gray-900 text-lg title-font font-medium mb-3 cursor-pointer">
+              Gray Scale
+              <input type="checkbox" name="enableGrayScale" id="enableGrayScale" class="ml-2" />
+            </label>
+            <p class="leading-relaxed text-base">Enables grayscale and shows the image in black and white.</p>
+          </div>
+        </div>
+        <div class="flex flex-col mb-10 lg:items-start items-center">
+          <div class="flex-grow w-full">
+            <label for="enableChromaKey" class="flex items-center justify-between text-gray-900 text-lg title-font font-medium mb-3 cursor-pointer">
+              Chroma Key
+              <input type="checkbox" name="enableChromaKey" id="enableChromaKey" class="ml-2" />
+            </label>
+            <p class="leading-relaxed text-base">Enable chroma key based on a background color and a background image (or not).</p>
+            <div class="flex items-center justify-between mt-2">
+              <label for="chromaKeyColor" class="text-gray-900 text-md title-font font-medium cursor-pointer">
+                Background color:
+              </label>
+              <input type="color" name="chromaKeyColor" id="chromaKeyColor" class="ml-2" />
+            </div>
+
+            <div class="flex items-center justify-between mt-2">
+              <label for="chromaKeyImageBackground" class="text-gray-900 text-md title-font font-medium cursor-pointer">
+                Background image:
+              </label>
+              <input type="file" style="display: none;" name="chromaKeyImageBackground" id="chromaKeyImageBackground" accept="image/*" class="ml-2" />
+              <input type="button" value="Image" onclick="document.getElementById('chromaKeyImageBackground').click()" class="cursor-pointer flex ml-auto text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col mb-10 lg:items-start items-center">
+          <div class="flex-grow w-full">
+            <label for="enableSobel" class="flex items-center justify-between text-gray-900 text-lg title-font font-medium mb-3 cursor-pointer">
+              Sobel - Edge Detection
+              <input type="checkbox" name="enableSobel" id="enableSobel" class="ml-2" />
+            </label>
+            <p class="leading-relaxed text-base">Enable edge detection by Sobel algorithm. To do this, each frame will undergo processing, which can make the update rate lower.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
